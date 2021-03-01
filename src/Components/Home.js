@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {  useEffect}  from 'react'
 import {Jumbotron,Container,Button} from "reactstrap";
 
 const Home=()=>
 {
+
+    useEffect(()=>{
+        document.title="Home || Course Management";
+    },[])
+
     return (
         <div>
             <Jumbotron className="text-center  ">

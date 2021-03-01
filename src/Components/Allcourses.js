@@ -1,11 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import Course from "./Course"
+import base_url from "./../api/bootapi";
+import axios from "axios";
+import { toast } from 'react-toastify';
 
 const Allcourse=()=>{
 
+useEffect(()=>{
+    document.title="All Courses || Course Management";
+    getAllCoursesFromServer();              //calling server
+},[])
+
+//function to call server
+
+const getAllCoursesFromServer=()=>{
+    axios.get(`${base_url}/courses`).then(
+        (response)=>{
+
+            toast.success("Courses has been loaded")
+            setCourses(response.data);
+        },
+        (error)=>{
+           toast.error("Something went wrong",{position:'bottom-right'});
+        }
+    )
+}
+
     const [courses,setCourses]=useState([
-        {title:"Java Course",description:"this is demo course"},
-        {title:"Django Course",description:"this is demo course"}
+      
     ])
     return(
         <div>
