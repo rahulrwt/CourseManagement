@@ -11,6 +11,9 @@ useEffect(()=>{
     getAllCoursesFromServer();              //calling server
 },[])
 
+const updateCourses=(id)=>{
+setCourses(courses.filter((C)=>C.id!=id));
+};
 //function to call server
 
 const getAllCoursesFromServer=()=>{
@@ -34,7 +37,7 @@ const getAllCoursesFromServer=()=>{
             <h1>All Course</h1>
             <p> List of courses are as follows</p>
             {
-                courses.length>0? courses.map((item)=><Course course={item} />) :"NO COURSES" 
+                courses.length>0? courses.map((item)=><Course course={item} update={updateCourses} />) :"NO COURSES" 
             }
         </div>
 
